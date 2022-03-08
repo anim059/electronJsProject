@@ -1,9 +1,13 @@
 
+* {
+  box-sizing: border-box;
+}
   body {
     font-size: 28px;
   }
   
 @media (prefers-color-scheme: dark) {
+
     body { 
       background: #333; 
       color: white;
@@ -47,7 +51,7 @@
     .active {
       background-color: #4CAF50;
     }
-   
+    /* custom  style class for element */
     .float-left{
       float: right;
     }
@@ -62,6 +66,60 @@
       color: #4CAF50;
       
     }
+
+    /* custom navbar style class  */
+    .sidenavbar-postion{
+      position: fixed;
+      top:350px;
+      left: 0;
+    }
+    .sidenavbar-postion .sidenavbar-header{
+      background-color: #4CAF50;
+      color: white;
+      width: auto;
+      height: auto;
+      float: left;
+      position: relative;
+      left: -95px;
+    }
+    
+    .sidenavbar-header-open{
+      left: 0 !important;
+      transition: left 1s;
+    }
+
+    .sidenavbar-postion .sidenavbar-header .sidenavbar-title{
+      font-size: 18px;
+      float: left;
+      padding: 0px 25px;
+      width: 50%;
+    }
+    .sidenavbar-postion .sidenavbar-header .sidenavbar-icon{
+      font-size: 30px;
+      float: right;
+      padding: 4px 9px;
+    }
+
+
+    .sidenavbar-postion .sidenavbar-icon-bg{
+      background-color: #4CAF50;
+      font-size: 30px;
+      color: white;
+      width: 40px;
+      height: 30px;
+      padding-left: 7px;
+    }
+    .sidenavbar-postion .sidenavbar-icon-bg-open{
+      background-color: #4CAF50;
+      font-size: 30px;
+      color: white;
+      width: 40px;
+      height: 35px;
+      padding-left: 140px;
+      padding-top: 8px;
+      transition: padding-left 2s;
+    }
+
     
   }
   
@@ -119,6 +177,18 @@
       background-color:#ddd;
       color: #4CAF50;
       
+    }
+
+    /* custom navbar style class  */
+    .sidenavbar-postion{
+      position: absolute;
+    }
+    .sidenavbar-postion .sidenavbar-icon-bg{
+      width: 10px;
+      height: 100px;
+      background-color: #4CAF50;
+      font-size:48px;
+      color:black
     }
   }
 
