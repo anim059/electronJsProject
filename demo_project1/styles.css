@@ -1,0 +1,131 @@
+
+  body {
+    font-size: 28px;
+  }
+  
+@media (prefers-color-scheme: dark) {
+    body { 
+      background: #333; 
+      color: white;
+      user-select: none;
+     }
+     ul{
+      height: 42px;
+      list-style-type: none;
+      position: sticky;
+      top: 0;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: white;
+      position: -webkit-sticky; /* Safari */
+    }
+    
+    
+    li {
+      float: left;
+      display: block;
+    }
+    
+    li a,span {
+      font-size: 15px;
+      font-family: 'Courier New', Courier, monospace;
+      list-style: none;
+      color: black;
+      text-align: center;
+      padding: 10px 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    
+    li a:hover {
+      background-color: white;
+      color: #ddd;
+    }
+    
+    .active {
+      background-color: #4CAF50;
+    }
+   
+    .float-left{
+      float: right;
+    }
+    .float-left .span-btn-bg{
+      background-color:#4d794e ;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 2px;
+    }
+    .float-left .span-btn-bg:hover{
+      background-color:#ddd;
+      color: #4CAF50;
+      
+    }
+    
+  }
+  
+  @media (prefers-color-scheme: light) {
+    body { background: #ddd; color: black; user-select: none;}
+    ul{
+      height: 42px;
+      list-style-type: none;
+      position: sticky;
+      top: 0;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      position: -webkit-sticky; /* Safari */
+    }
+    
+    
+    li {
+      float: left;
+      display: block;
+    }
+    
+    li a,span {
+      font-size: 15px;
+      font-family: 'Courier New', Courier, monospace;
+      list-style: none;
+      color: white;
+      text-align: center;
+      padding: 10px 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    
+    li a:hover {
+      background-color: #111;
+      color: white;
+    }
+    
+    .active {
+      background-color: #4CAF50;
+    }
+   
+    .float-left{
+      float: right;
+    }
+    .float-left .span-btn-bg{
+      background-color:#4d794e ;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 2px;
+    }
+    .float-left .span-btn-bg:hover{
+      background-color:#ddd;
+      color: #4CAF50;
+      
+    }
+  }
+
+  .back-btn-property{
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px;
+    font-size: 16px;
+    text-decoration: none;
+  }
