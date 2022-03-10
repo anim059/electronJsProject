@@ -8,9 +8,7 @@ contextBridge.exposeInMainWorld('darkMode', {
 
 contextBridge.exposeInMainWorld('dataApi', {
   fetchdata : (data) => ipcRenderer.send("fetch-user-data",data),
-  readdata : () => ipcRenderer.invoke("read-user-data").then((result) => {
-    console.log(result)
-  })
+  readdata : () => ipcRenderer.invoke("read-user-data")
 })
 
 // ipcRenderer.on('FILES_LIST_FETCHED', (event, result) => {

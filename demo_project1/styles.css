@@ -64,8 +64,14 @@
     .float-left .span-btn-bg:hover{
       background-color:#ddd;
       color: #4CAF50;
-      
     }
+    .form_display{
+      background-color: #4a4b4c;
+      text-align: center;
+      margin-top: 60px;
+      padding: 5px;
+      }
+    
 
     /* custom navbar style class  */
     .sidenavbar-postion{
@@ -120,7 +126,7 @@
       transition: padding-left 2s;
     }
 
-    
+  
   }
   
   @media (prefers-color-scheme: light) {
@@ -175,9 +181,22 @@
     }
     .float-left .span-btn-bg:hover{
       background-color:#ddd;
-      color: #4CAF50;
-      
+      color: #4CAF50; 
     }
+     .form_display{
+      background-color: #cad3db;
+      text-align: center;
+      margin-top: 60px;
+      padding: 5px;
+      display: none;
+      }
+      .show_form_display{
+        background-color: #cad3db;
+        text-align: center;
+        margin-top: 60px;
+        padding: 5px;
+        display: block;
+      }
 
     /* custom navbar style class  */
     .sidenavbar-postion{
@@ -189,7 +208,6 @@
       background-color: #4CAF50;
       font-size:48px;
       color:black
-    }
   }
 
   .back-btn-property{
@@ -199,3 +217,5 @@
     font-size: 16px;
     text-decoration: none;
   }
+
+}

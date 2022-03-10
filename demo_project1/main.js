@@ -63,13 +63,25 @@ app.on('window-all-closed', () => {
 ipcMain.on('fetch-user-data',(event,args)=>{
   let pathName = path.join(__dirname,"userinfo.txt");
   let value = JSON.stringify(args);
+  
+  if (fs.readFileSync(pathName).length === 0) {
+    fs.appendFile(pathName,value,'utf8',function(err){
+      if(err){
+        return console.log(err);
+      }
+      console.log("the file is created where file is empty");
+    })
+  }else{
+    let newvalue = '\n' + value
+    fs.appendFile(pathName,newvalue,'utf8',function(err){
+      if(err){
+        return console.log(err);
+      }
+      console.log("the file is created ");
+    })
+  } 
 
-  fs.appendFile(pathName,value,'utf8',function(err){
-    if(err){
-      return console.log(err);
-    }
-    console.log("the file is created");
-  })
+  
   console.log(pathName)
 })
 
