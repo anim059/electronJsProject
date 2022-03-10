@@ -1,10 +1,18 @@
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const path = require('path')
+const fs = require('fs');
+const { resolve } = require('path');
+const { reject } = require('lodash');
+
+let userdata = {};
+
+
+
 
 function createWindow () {
   const win = new BrowserWindow({
-    width: 1000,
-    height: 1000,
+    width: 400,
+    height: 400,
     //frame : false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
@@ -13,7 +21,7 @@ function createWindow () {
 
   win.loadFile('index.html')
 
-  ipcMain.handle('dark-mode:toggle', () => {
+  ipcMain.handle('dark-mode:toggle', (event) => {
     if (nativeTheme.shouldUseDarkColors) {
       nativeTheme.themeSource = 'light'
     } else {
@@ -22,9 +30,11 @@ function createWindow () {
     return nativeTheme.shouldUseDarkColors
   })
 
-  ipcMain.handle('dark-mode:system', () => {
+ ipcMain.handle('dark-mode:system', () => {
     nativeTheme.themeSource = 'system'
   })
+
+
 }
 
 setTimeout(()=>{
@@ -49,3 +59,31 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+ipcMain.on('fetch-user-data',(event,args)=>{
+  let pathName = path.join(__dirname,"userinfo.txt");
+  let value = JSON.stringify(args);
+
+  fs.appendFile(pathName,value,'utf8',function(err){
+    if(err){
+      return console.log(err);
+    }
+    console.log("the file is created");
+  })
+  console.log(pathName)
+})
+
+
+// main
+ipcMain.handle("read-user-data", (event, argx = 0) => {
+  return new Promise((resolve, reject) => {
+    let pathName = path.join(__dirname,"userinfo.txt");
+    fs.readFile(pathName, "utf8", function (err, data) {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(data);
+    });
+  });
+});
