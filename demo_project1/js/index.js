@@ -1,6 +1,7 @@
 
 
 let userObj = {
+    id:"",
     fname : "",
     lname : "",
     email : ""
@@ -28,6 +29,7 @@ function fetchdata(){
             }
         }
     }
+    userObj["id"] = userObj["fname"]+userObj["lname"];
 }
 
 

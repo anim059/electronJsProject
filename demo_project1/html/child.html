@@ -10,9 +10,14 @@
 </head>
 <body>
   
-    <a class="back-btn-property" href="../index.html">Back</a>
-    <h1>select file</h1>
-    <button id="dialog-box"class="">open dialoge</button>
+  <nav class="nav-bar">
+    <ul>
+      <li><a class="active"  href="../index.html">Back</a></li>
+      
+    </ul>
+  </nav>
+    
+    
 
     <div>
         <table class="table" id="user-table">
@@ -27,24 +32,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-              </tr>
+              
             </tbody>
           </table>
     </div>
-    <button id="form-open">click</button>
+    
+
     <div class="form_display" id="load-form">
-      <form >
+      <button class="form-close-btn" id="form-close-btn">close</button>
+      <form id="update_data_form">
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname" ><br>
         <label for="lname">Last name:</label><br>
         <input type="text" id="lname" name="lname"><br>
         <label for="email">Email:</label><br>
         <input type="text" id="email" name="email"><br>
-        <button type="submit" id="update-form-submit" value="Submit">Update</button>
+        <button type="submit" id="update-form-submit" value="Submit" class="crud-form-submit-btn">Update</button>
       </form> 
   </div>
     <!--

@@ -20,7 +20,6 @@
     <ul>
       <li><a class="active" href="#home">Home</a></li>
       <li><a href="./html/child.html">Users</a></li>
-      <li><a href="#contact">Contact</a></li>
       <div class="float-left"> 
           <li  id="toggle-dark-mode"><span class="span-btn-bg"> Dark Mode</span></button>
           <li id="reset-to-system"><span class="span-btn-bg"> System Theme</span></button>
@@ -31,9 +30,9 @@
   
   <p id = "error-message" style="color:red;"></p>
   
-  <h3>User Credentials</h3>
+  <h3 class="form-heading">User Credentials</h3>
    <div>
-    <form action="/action_page.php" id="crud-form">
+    <form action="/action_page.php" id="crud-form" class="form-body">
       <fieldset>
         <legend>Info:</legend>
         <label for="fname">First name:</label>
@@ -42,16 +41,16 @@
         <input type="text" id="lname" name="lname"  required><br><br>
         <label for="email">Email:</label>
         <input type="text" id="email" name="email"  required><br><br>
-        <button type="submit" value="Submit" id="crud-form-submit-btn">submit</button>
+        <button type="submit" value="Submit" id="crud-form-submit-btn" class="crud-form-submit-btn">submit</button>
       </fieldset>
     </form>
    </div>
+
+
   </body>
   </html>
   
-    
-
-  
+      
     <script src="renderer.js"></script>
     <script src="js/index.js"></script>
   </body>

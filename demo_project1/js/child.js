@@ -9,15 +9,17 @@
 // });
 
 
-document.getElementById("form-open").addEventListener('click',()=>{
-   document.getElementById("load-form").classList.remove("form_display")
-   document.getElementById("load-form").classList.add("show_form_display")
-});
+// document.getElementById("form-open").addEventListener('click',()=>{
+  
+// });
 
-document.getElementById("update-form-submit").addEventListener('click',()=>{
-  document.getElementById("load-form").classList.remove("show_form_display")
-  document.getElementById("load-form").classList.add("form_display")
-});
+let userObj = {
+  id:"",
+  fname : "",
+  lname : "",
+  email : ""
+}
+
 
 const tables = document.getElementById("user-table");
 
@@ -32,6 +34,7 @@ window.addEventListener('load', async () => {
 
     
 
+    
     for(var i=0;i<user_data.length;i++){
       const json_data = JSON.parse(user_data[i])
      
@@ -46,21 +49,54 @@ window.addEventListener('load', async () => {
       cell2.innerHTML = json_data["fname"];
       cell3.innerHTML = json_data["lname"];
       cell4.innerHTML = json_data["email"];
-      const field_id = "row"+i+1
+      const field_id = json_data["fname"]+json_data["email"]
       
-      cell5.innerHTML = `<button  onclick=${EditFunction()}  style="background-color:#7fbb7f;color:white;
+      cell5.innerHTML = `<button id=${json_data["id"]} onclick="EditFunction(this.id)"  style="background-color:#7fbb7f;color:white;
       border-radius:5px;text-align:center;font-size:20px;">Edit</button>`
-      cell6.innerHTML = `<button onclick=${DeleteFunction()} style="background-color:#d32a2a;color:white;
+      cell6.innerHTML = `<button id=${json_data["id"]} onclick="DeleteFunction(this.id)" style="background-color:#d32a2a;color:white;
       border-radius:5px;text-align:center;font-size:20px;">Delete</button>`
+
+      
     }
       
   })
 
-  function EditFunction(){
-      console.log("hello1")
+  const EditFunction = async (field_id) => {
+    document.getElementById("load-form").classList.remove("form_display")
+    document.getElementById("load-form").classList.add("show_form_display")
+    let searchValue ;
+    const searchData = await window.dataApi.searchdata(field_id).then((result)=>{
+      searchValue = result;
+    });
+
+     const form_obj = document.getElementById("update_data_form")
+     form_obj.elements["fname"].value = searchValue["fname"];
+     form_obj.elements["lname"].value = searchValue["lname"];
+     form_obj.elements["email"].value = searchValue["email"];
+
+
+     document.getElementById("update-form-submit").addEventListener('click',()=>{
+      document.getElementById("load-form").classList.remove("show_form_display")
+      document.getElementById("load-form").classList.add("form_display")
+
+      userObj["fname"] = form_obj.elements["fname"].value;
+      userObj["lname"] = form_obj.elements["lname"].value;
+      userObj["email"] = form_obj.elements["email"].value;
+      userObj["id"] = field_id;
+
+      window.dataApi.Updatedata(userObj);
+      //console.log(userObj);
+    });
+    document.getElementById("form-close-btn").addEventListener('click',()=>{
+      document.getElementById("load-form").classList.remove("show_form_display")
+      document.getElementById("load-form").classList.add("form_display")
+    });
+      //console.log(field_id);
     }
-    function DeleteFunction(){
-      console.log("hello2")
+    function DeleteFunction(field_id){
+      window.dataApi.Deletedata(field_id);
+      window.location.href = "../html/child.html"
+      //console.log(field_id)
    }
 
 

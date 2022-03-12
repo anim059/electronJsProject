@@ -8,7 +8,10 @@ contextBridge.exposeInMainWorld('darkMode', {
 
 contextBridge.exposeInMainWorld('dataApi', {
   fetchdata : (data) => ipcRenderer.send("fetch-user-data",data),
-  readdata : () => ipcRenderer.invoke("read-user-data")
+  readdata : () => ipcRenderer.invoke("read-user-data"),
+  searchdata : (id) => ipcRenderer.invoke("search-user-data",id),
+  Updatedata : (userData) => ipcRenderer.send("update-user-data",userData),
+  Deletedata : (id) => ipcRenderer.send("delete-user-data",id)
 })
 
 // ipcRenderer.on('FILES_LIST_FETCHED', (event, result) => {
