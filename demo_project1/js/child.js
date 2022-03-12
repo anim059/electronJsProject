@@ -1,18 +1,5 @@
-// document.getElementById("dialog-box").addEventListener('click',()=>{
-   
-// });
 
-// const iconclass = document.getElementById("side-navbar-icon");
-// iconclass.addEventListener('click',()=>{
-//     document.getElementById("sidenavbar-header").classList.add("sidenavbar-header-open");
-//     console.log("click");
-// });
-
-
-// document.getElementById("form-open").addEventListener('click',()=>{
-  
-// });
-
+//creating a initial object//
 let userObj = {
   id:"",
   fname : "",
@@ -24,17 +11,14 @@ let userObj = {
 const tables = document.getElementById("user-table");
 
 let data;
+// load event is used for getting all user information when the page is loaded //
 window.addEventListener('load', async () => {
     const isDarkMode = await window.dataApi.readdata().then((result) => {
       data=result
     })
-    //console.log(data.length)
+   
     const user_data = data.split('\n')
-    //console.log(user_data)
-
-    
-
-    
+   
     for(var i=0;i<user_data.length;i++){
       const json_data = JSON.parse(user_data[i])
      
@@ -61,6 +45,8 @@ window.addEventListener('load', async () => {
       
   })
 
+
+   // this function is for updating a specifice user from database //
   const EditFunction = async (field_id) => {
     document.getElementById("load-form").classList.remove("form_display")
     document.getElementById("load-form").classList.add("show_form_display")
@@ -85,18 +71,20 @@ window.addEventListener('load', async () => {
       userObj["id"] = field_id;
 
       window.dataApi.Updatedata(userObj);
-      //console.log(userObj);
+      
     });
     document.getElementById("form-close-btn").addEventListener('click',()=>{
       document.getElementById("load-form").classList.remove("show_form_display")
       document.getElementById("load-form").classList.add("form_display")
     });
-      //console.log(field_id);
+     
     }
+
+
+    // this function is for deleting a specifice user from database //
     function DeleteFunction(field_id){
       window.dataApi.Deletedata(field_id);
       window.location.href = "../html/child.html"
-      //console.log(field_id)
    }
 
 

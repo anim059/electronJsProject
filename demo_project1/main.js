@@ -8,18 +8,19 @@ let userdata = {};
 
 
 
-
+//createing main process window which width and height 1000//
 function createWindow () {
   const win = new BrowserWindow({
     width: 1000,
     height: 1000,
-    //frame : false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   })
 
   win.loadFile('index.html')
+  
+  //main process handle "dark-mode:toggle" channel for dark and system mode//  
 
   ipcMain.handle('dark-mode:toggle', (event) => {
     if (nativeTheme.shouldUseDarkColors) {
@@ -37,13 +38,8 @@ function createWindow () {
 
 }
 
-setTimeout(()=>{
-  console.log("false");
-  if(app.isReady){
-    console.log("true");
-  }
-},2000);
 
+// when Electron has finished initializing this event will called
 app.whenReady().then(() => {
   createWindow()
 
@@ -53,14 +49,16 @@ app.whenReady().then(() => {
     }
   })
 })
-
+// when all the window is closed the the main application will be quit//
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
 
-ipcMain.on('fetch-user-data',(event,args)=>{
+
+//this inter process communication handle 'fetch-user-data' channel  for createing new user//
+ipcMain.on('create-user-data',(event,args)=>{
   let pathName = path.join(__dirname,"userinfo.txt");
   let value = JSON.stringify(args);
   
@@ -86,7 +84,8 @@ ipcMain.on('fetch-user-data',(event,args)=>{
 })
 
 
-// main
+//this inter process communication handle 'read-user-data' channel  for reading all users and return as a promise with //
+// all user info
 ipcMain.handle("read-user-data", (event, argx = 0) => {
   return new Promise((resolve, reject) => {
     let pathName = path.join(__dirname,"userinfo.txt");
@@ -100,7 +99,7 @@ ipcMain.handle("read-user-data", (event, argx = 0) => {
   });
 });
 
-// main
+// /this inter process communication handle 'search-user-data' channel  for searching a specifice user  //
 ipcMain.handle("search-user-data", (event, argx = 0) => {
   return new Promise((resolve, reject) => {
     let pathName = path.join(__dirname,"userinfo.txt");
@@ -123,7 +122,7 @@ ipcMain.handle("search-user-data", (event, argx = 0) => {
 });
 
 
-
+//this inter process communication handle 'read-user-data' channel  for updating a specifice user //
 ipcMain.on('update-user-data',(event,args)=>{
   let pathName = path.join(__dirname,"userinfo.txt");
   let value = JSON.stringify(args);
@@ -135,8 +134,6 @@ ipcMain.on('update-user-data',(event,args)=>{
       if (err) {
         return;
       }
-
-       console.log(value)
        let Newvalue = JSON.parse(value)
        const all_user_data = data.split("\n")
        for(var i=0;i<all_user_data.length;i++){
@@ -157,11 +154,12 @@ ipcMain.on('update-user-data',(event,args)=>{
 })
 
 
+
+
+//this inter process communication handle 'read-user-data' channel  for deleting a specifice user //
 ipcMain.on('delete-user-data',(event,args)=>{
   let pathName = path.join(__dirname,"userinfo.txt");
  
-  
-  
   if (fs.readFileSync(pathName).length !== 0) {
    
     fs.readFile(pathName, "utf8", function (err, data) {
@@ -169,8 +167,6 @@ ipcMain.on('delete-user-data',(event,args)=>{
         return;
       }
 
-       //console.log(value)
-       
        const all_user_data = data.split("\n")
        for(var i=0;i<all_user_data.length;i++){
         const json_data = JSON.parse(all_user_data[i])

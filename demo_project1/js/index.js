@@ -1,11 +1,12 @@
 
-
+//creating a initial object//
 let userObj = {
     id:"",
     fname : "",
     lname : "",
     email : ""
 }
+
 const error_message = document.getElementById("error-message");
 const crud_form = document.getElementById("crud-form");
 const crud_form_btn = document.getElementById("crud-form-submit-btn");
